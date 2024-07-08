@@ -1,0 +1,63 @@
+.mainWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    font-family: Arial, sans-serif;
+    gap: 40px;
+}
+.inputWrapper{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.input{
+    height: 100%;
+    font-size: 1.2rem;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+}
+.addBtn{
+    height: 100%;
+    width: 50px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    background-color: black;
+    color: white;
+    transition: .3s;
+    cursor: pointer;
+}
+.addBtn:hover{
+    background-color: white;
+    color: black;
+}
+.task{
+    display: flex;
+    align-items: center;
+    padding: 15px 60px;
+    font-size: 2rem;
+    background-color: white;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border: 3px solid rgba(216, 216, 216, 0.75);
+    border-radius: 5px;
+    gap: 90px;
+}
+.txt{
+    flex: 1;
+}
+.dltBtn{
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    background-color: hsl(10, 90%, 50%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+.dltBtn:hover{
+    background-color: hsl(10, 90%, 30%);
+}
