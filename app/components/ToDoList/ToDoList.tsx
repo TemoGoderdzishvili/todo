@@ -2,9 +2,15 @@
 import { link } from "fs"
 import styles from "./ToDoList.module.css"
 import { useState } from "react"
+import { text } from "stream/consumers"
+
+interface Task {
+    text: string,
+    completed: boolean
+}
 
 const ToDoList = () => {
-    const [tasks, setTasks] = useState<string[]>([])
+    const [tasks, setTasks] = useState<Task[]>([])
     const [newTask, setNewTask] = useState('')
 
     const onChange = (e: any) => {
@@ -13,13 +19,20 @@ const ToDoList = () => {
 
     const addTask = () => {
         if (newTask !== '') {
-            setTasks([...tasks, newTask])
+            setTasks([...tasks, {text: newTask, completed: false}])
             setNewTask('')
         }
     }
 
-    const deleteTask = (index: any) => {
+    const deleteTask = (index: number) => {
         const updatedTasks = tasks.filter((_, i) => i !== index)
+        setTasks(updatedTasks)
+    }
+
+    const toggleCompletion = (index: number) => {
+        const updatedTasks = tasks.map((task, i) => 
+            index === i ? {...task, completed: !task.completed} : task
+        )
         setTasks(updatedTasks)
     }
 
@@ -41,7 +54,13 @@ const ToDoList = () => {
                 {
                     tasks.map((task, index) =>
                         <li key={index} className={styles.task}>
-                            <span className={styles.txt}>{task}</span>
+                            <span className={styles.txt}
+                                  style={{
+                                    textDecoration: task.completed ? 'line-through' : 'none',
+                                    color: task.completed ? 'red' : 'black'
+                                  }}
+                                  onClick={() => toggleCompletion(index)}
+                                  >{task.text}</span>
                             <button className={styles.dltBtn} onClick={() => deleteTask(index)}>Delete</button>
                         </li>
                     )
